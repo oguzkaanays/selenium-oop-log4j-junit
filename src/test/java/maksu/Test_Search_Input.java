@@ -20,6 +20,7 @@ import java.io.IOException;
 import org.openqa.selenium.WebDriver;
 import java.awt.Color;
 import java.lang.Thread;
+import com.operations.BasketOperations;
 
 
 
@@ -30,12 +31,6 @@ public class Test_Search_Input extends BaseTest {
     @Test
     @Order(1)
     public void Search() throws Exception {
-        //System.setProperty("webdriver.chrome.driver", "/Users/skpatro/sel/chromedriver");
-      /*  WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-
-        driver.get("https://beymen.com/"); */
 
         ExcelUtil excelUtil = new ExcelUtil();
         excelUtil.setExcelFile("./testdata.xlsx", "Sheet1");
@@ -63,7 +58,7 @@ public class Test_Search_Input extends BaseTest {
         @Order(2)
         public void SelectProduct() throws InterruptedException {
 
-        WebElement product = driver.findElement(By.xpath("//*[@id=\"productList\"]/div[2]/div/div/div[1]"));
+        WebElement product = driver.findElement(By.xpath("//*[@id=\"productList\"]/div[3]/div/div/div[2]/a[2]/span"));
         product.click();
         Thread.sleep(3000);
 
@@ -81,7 +76,7 @@ public class Test_Search_Input extends BaseTest {
         @Test
         @Order(3)
         public void AddtoBag() throws InterruptedException {
-            WebElement selectSize = driver.findElement(By.xpath("//*[@id=\"sizes\"]/div/span[5]"));
+       /*     WebElement selectSize = driver.findElement(By.xpath("//*[@id=\"sizes\"]/div/span[5]"));
             selectSize.click();
             Thread.sleep(3000);
             WebElement addtoBag = driver.findElement(By.xpath("//*[@id=\"addBasket\"]"));
@@ -90,34 +85,49 @@ public class Test_Search_Input extends BaseTest {
 
             WebElement GoTOBag = driver.findElement(By.xpath("/html/body/header/div/div/div[3]/div/a[3]"));
             GoTOBag.click();
-            Thread.sleep(3000);
+            Thread.sleep(3000); */
+
+            BasketOperations baskedOperation = new BasketOperations(driver);
+            /* Rastgele Seçilen ürün sepete eklenir.*/
+            WebElement selectSize = driver.findElement(By.xpath("//span[contains(.,'42')]"));
+            selectSize.click();
+            baskedOperation.addBasked();
+            /* Sepet görüntülenir */
+            baskedOperation.goToBasked();
+            /* Ürün sayfasındaki fiyat ile sepette yer alan ürün fiyatının doğruluğu karşılaştırılır. */
+           // Assert.assertEquals(baskedOperation.getBaskedPrice(),baskedOperation.getProductPrice());
+            /* Adet arttırılarak ürün adedinin 2 olduğu doğrulanır. */
+            baskedOperation.baskedProductUp();
+           // Assert.assertEquals(baskedOperation.baskedProductUpControl(),"2");
+            /* Ürün sepetten silinerek sepetin boş olduğu kontrol edilir. */
+            baskedOperation.baskedProductRemove();
+           // Assert.assertEquals(baskedOperation.productRemoveControl(),"Sepetiniz Boş");
+
+
         }
 
         @Test
         @Order(4)
         public void EqualisPrice() {
-        WebElement productDetailPrice = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[1]/div[2]/ul/li[4]/span[2]"));
+     /*   WebElement productDetailPrice = driver.findElement(By.xpath("/html/body/div[1]/div/div/div/div[2]/div[1]/div[2]/ul/li[4]/span[2]"));
         System.out.println(productDetailPrice.getText());
 
-
-
+        */
         }
 
         @Test
         @Order(5)
         public void Select2Product() throws InterruptedException {
 
-        WebElement quantity = driver.findElement(By.xpath("//*[@id=\"quantitySelect0-key-0\"]"));
+      /*  WebElement quantity = driver.findElement(By.xpath("//*[@id=\"quantitySelect0-key-0\"]"));
         quantity.click();
         Thread.sleep(3000);
-            WebElement quantity2 = driver.findElement(By.xpath("//*[@id=\"quantitySelect0-key-0\"]/option[2]"));
-
 
             quantity.sendKeys("2");
             quantity.sendKeys(Keys.ENTER);
 
             String control = driver.findElement(By.xpath("//*[@id=\"quantitySelect0-key-0\"]")).getAttribute("value");
-            System.out.println(control);
+            System.out.println(control); */
 
 
 
