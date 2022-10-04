@@ -9,16 +9,27 @@ import java.util.List;
 
 public class ProductOperations {
 
-    List<WebElement> result;
+
     WebDriver driver;
+
+    By product = By.xpath("//span[contains(.,'Mavi Çizgili Zincir Nakışlı Mini Gömlek Elbise')]");
+    By byProductPrice = By.xpath("//*[@id=\"priceNew\"]");
+
+
+
+    public ProductOperations(WebDriver driver) {
+        this.driver = driver;
+    }
 
 
 
     public void productSelect(){
         try {
 
-            WebElement result = (WebElement) driver.findElements(By.xpath("//*[@class='listView ']//*[@class='column']/div/div/a/img"));
-            result.click();
+            Thread.sleep(2000);
+
+            driver.findElement(product).click();
+
 
             Thread.sleep(2000);
 

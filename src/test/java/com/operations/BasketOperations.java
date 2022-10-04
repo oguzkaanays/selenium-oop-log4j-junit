@@ -1,6 +1,6 @@
 package com.operations;
 
-import maksu.BaseTest;
+import test.BaseTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -9,7 +9,7 @@ import org.openqa.selenium.WebDriver;
 public class BasketOperations extends BaseTest {
 
 
-    WebDriver driver;
+    public WebDriver driver;
 
     By searchBox = By.xpath("/html/body/header/div/div/div[2]/div/div/div/input");
 
@@ -26,12 +26,22 @@ public class BasketOperations extends BaseTest {
     By GoToBasket = By.xpath("/html/body/header/div/div/div[3]/div/a[3]/span");
     By byBaskedProductPrice = By.xpath("/html/body/div[1]/div/div/div/div[2]/div[1]/div[2]/ul/li[4]/span[2]");
     By quantity = By.xpath("//*[@id=\"quantitySelect0-key-0\"]");
-    By quantityControl = By.xpath("//*[@id=\"quantitySelect0-key-0\"]");
+
+     static final By DROPDOWN = By.id("quantitySelect0-key-0");
+    By quantityControl = DROPDOWN.cssSelector("#quantitySelect0-key-0 > option:nth-child(2)");
 
     By byRemoveProduct = By.xpath("//*[@id=\"removeCartItemBtn0-key-0\"]");
 
     private static String baskedPrice;
     private static String productPrice;
+
+    public String getBaskedPrice() {
+        return baskedPrice;
+    }
+
+    public String getProductPrice() {
+        return productPrice;
+    }
 
     public BasketOperations(WebDriver driver) {
         this.driver = driver;
@@ -43,16 +53,10 @@ public class BasketOperations extends BaseTest {
     }
 
 
-    public String getBaskedPrice() {
-        return baskedPrice;
-    }
 
-    public String getProductPrice() {
-        return productPrice;
-    }
 
     public void addBasked(){
-        //productPrice = driver.findElement(byProductPrice).getText();
+        productPrice = driver.findElement(byProductPrice).getText();
         driver.findElement(addtoBasket).click();
     }
 
@@ -81,9 +85,11 @@ public class BasketOperations extends BaseTest {
         }
     }
 
-    public String baskedProductUpControl(){
+    public String baskedProductUpControl() throws InterruptedException {
+        Thread.sleep(1000);
 
-        String control = driver.findElement(By.xpath("//*[@id=\\\"quantitySelect0-key-0\\\"]\")).getAttribute(\"value")).getAttribute("value");
+        String control = driver.findElement(By.id("quantitySelect0-key-0")).getAttribute("value");
+
         return control;
     }
 
@@ -97,7 +103,7 @@ public class BasketOperations extends BaseTest {
     }
 
     public String productRemoveControl(){
-        String control = driver.findElement(By.xpath("//class[@value ='Sepetinizde Ürün Bulunmamaktadır]")).getText();
+        String control = driver.findElement(By.xpath("//strong[contains(text(),'Sepetinizde Ürün Bulunmamaktadır')]")).getText();
         return control;
     }
 
