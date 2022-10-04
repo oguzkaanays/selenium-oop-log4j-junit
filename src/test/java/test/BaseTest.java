@@ -1,6 +1,7 @@
 package test;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.junit.jupiter.api.*;
 //import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
@@ -25,7 +26,7 @@ public class BaseTest {
         options.addArguments("disable-popup-blocking");
 
         driver.get("https://www.beymen.com/");
-        // Assert.assertEquals(driver.getCurrentUrl(),"https://www.beymen.com/");
+        Assert.assertEquals(driver.getCurrentUrl(),"https://www.beymen.com/");
         Thread.sleep(5999);
         driver.manage().window().maximize();
         Thread.sleep(5999);
