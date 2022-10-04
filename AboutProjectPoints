@@ -1,0 +1,19 @@
+
+        Proje üzerinde eksik noktalar ve geliştirilebilir noktalar;
+
+        1) Öncelikle pathleri operasyonlarda tanımlamak yerine page classlarını kullanarak kulağımı daha kolay tutma yönetimine gidebilirdim.
+        2) Proje çok fazla Thread.Sleep içeriyor.
+        3) Otomasyon çok fazla thread.sleep içerdiği için uzun sürüyor.
+        4) Adlanlandırmalarda çokça yanlış bulunmakta.
+
+
+        1-) Kendime ait şahsi bilgisayarımda geliştirme ortamından sağlıklı bir şekilde faydalanamadığımdan kaybaklı çok
+
+       fazla eskiği olan bu otomasyonu sizinle paylaşmaktan dolayı sıkkınım. Bu profesyonellikten uzak davranışı anlayışla karşıladığınız için teşekkür ederim.
+
+       2-) Otomasyonu hızlandırmak için öncelikle daha farklı bir POM geliştirilmeli ve path kullanımı bu şekilde kesinlikle olmamalı örnek olarak ana sayfa için bir class
+
+       ve bundan türetilen searchBox , searchBox.Click() şeklinde methodlar ile daha hızlı ve sağlıklı bir otomasyona adım atılabilirdi.
+
+
+       Okuduğunuz için ve anlayışınız için Teşekkür Ederim , İyi ve Sağlıklı Günler :)
